@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/SobreFragment">
+
+    <fragment
+        android:id="@+id/SobreFragment"
+        android:name="br.edu.ifrn.onibus_rn.fragment.SobreFragment"
+        android:label="@string/sobre_fragment_label"
+        tools:layout="@layout/fragment_sobre">
+
+        <action
+            android:id="@+id/action_SobreFragment_to_SecondFragment"
+            app:destination="@id/SobreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="br.edu.ifrn.onibus_rn.fragment.ConversasFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_conversas">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_SobreFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
+</navigation>

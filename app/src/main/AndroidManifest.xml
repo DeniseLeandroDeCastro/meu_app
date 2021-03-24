@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="br.edu.ifrn.onibus_rn">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/onibus_amarelo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/onibus_amarelo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Onibus_rn">
+        <activity
+            android:name=".activity.ConfiguracoesActivity"
+            android:theme="@style/Theme.Onibus_rn.NoActionBar"
+            android:parentActivityName=".activity.MainActivity"></activity>
+        <activity
+            android:name=".activity.ChatActivity"
+            android:theme="@style/Theme.Onibus_rn.NoActionBar"
+            android:parentActivityName=".activity.MainActivity"></activity>
+        <activity
+            android:name=".activity.PrincipalActivity"
+            android:label="@string/title_activity_principal"
+            android:theme="@style/Theme.Onibus_rn.NoActionBar"/>
+        <activity
+            android:name=".activity.TermoDeUsoActivity"
+            android:theme="@style/termoTheme"/>
+        <activity
+            android:name=".activity.CadastroActivity"
+            android:parentActivityName=".activity.MainActivity"/>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:parentActivityName=".activity.MainActivity"/>
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/Theme.Onibus_rn.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

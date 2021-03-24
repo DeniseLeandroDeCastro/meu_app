@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.TermoDeUsoActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="313dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="100dp"
+        android:padding="10dp"
+        android:text="O aplicativo SAFE BUS tem por objetivo estabelecer um novo canal de comunicação entre a população e a Polícia Militar do Rio Grande do Norte.\n\n Ao utilizar o aplicativo, o usuário estará fornecendo as coordenadas GPS do seu celular e este passará a ser monitorado e rastreado até a conclusão do atendimento. \n\n Juntamente com a posição, também serão enviados todos os dados inseridos no cadastro e os dados do celular, inclusive o IMEI.\n\nEste aplicativo deve ser utilizado unicamente em caso de ocorrência  policial de ASSALTO A ÔNIBUS.\n\nÉ proibida a utilização deste aplicativo para trotes, podendo ser responsabilizado conforme tipificado nos Artigos 266 e 340  do Código Penal Brasileiro, quem se prestar a fornecer informação falsa através deste meio de comunicação.\n\nAo utilizar este aplicativo, o usuário estará concordando com este termo de uso."
+        android:textAlignment="textStart"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@color/colorPrimaryDarkTermo"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Termo de Uso"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textConfirmar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_aceito"
+        android:drawablePadding="5dp"
+        android:onClick="textConfirmar"
+        android:text="Li e concordo com este termo de uso"
+        android:textColor="@color/colorPrimaryDarkTermo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

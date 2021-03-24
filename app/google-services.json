@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "774873974593",
+    "project_id": "onibus-rn",
+    "storage_bucket": "onibus-rn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774873974593:android:ef33bd7ef87463fd9b03c0",
+        "android_client_info": {
+          "package_name": "br.edu.ifrn.onibus_rn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "774873974593-ct4mo4i2c1d2bgauvllpge8n61v1fu20.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.edu.ifrn.onibus_rn",
+            "certificate_hash": "6e69901e47c67baadcd3ce5b85d1d58aa0827de6"
+          }
+        },
+        {
+          "client_id": "774873974593-kg67cl54opnbpombbbcrp5afujlusjk4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1pCJF8YSTWrkAaGpV-KsQnBAy6s-EI44"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774873974593-kg67cl54opnbpombbbcrp5afujlusjk4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
