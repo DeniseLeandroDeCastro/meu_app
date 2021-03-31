@@ -1,8 +1,13 @@
 package br.edu.ifrn.onibus_rn.model;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import br.edu.ifrn.onibus_rn.config.ConfiguracaoFirebase;
+import br.edu.ifrn.onibus_rn.helper.UsuarioFirebase;
 
 public class Usuario {
 
@@ -19,9 +24,39 @@ public class Usuario {
     private String cidade;
     private String estado;
     private String telefone;
+    private String foto;
 
 
     public Usuario() {
+    }
+
+    public void atualizar() {
+        String identificadorUsuario = UsuarioFirebase.getIdentificadorUsuario();
+        DatabaseReference database = ConfiguracaoFirebase.getFirebaseDatabase();
+        DatabaseReference usuariosRef = database.child("usuarios")
+                .child(identificadorUsuario);
+
+        Map<String, Object> valoresUsuario = converterParaMap();
+        usuariosRef.updateChildren(valoresUsuario);
+    }
+    public Map<String, Object> converterParaMap() {
+        HashMap<String, Object> usuarioMap = new HashMap<>();
+        usuarioMap.put("Id", getIdUsuario());
+        usuarioMap.put("nome", getNome());
+        usuarioMap.put("email", getEmail());
+        usuarioMap.put("senha", getSenha());
+        usuarioMap.put("logradouro", getLogradouro());
+        usuarioMap.put("numero", getNumero());
+        usuarioMap.put("complemento", getComplemento());
+        usuarioMap.put("bairro", getBairro());
+        usuarioMap.put("cep", getCep());
+        usuarioMap.put("cidade", getCidade());
+        usuarioMap.put("estado", getEstado());
+        usuarioMap.put("telefone", getTelefone());
+        usuarioMap.put("foto", getFoto());
+
+
+        return usuarioMap;
     }
 
     /*Método para salvar o usuário no Firebase*/
@@ -29,6 +64,9 @@ public class Usuario {
         DatabaseReference firebase = ConfiguracaoFirebase.getFirebaseDatabase();
         firebase.child("usuarios")
                 .child(this.idUsuario)
+                .child(this.nome)
+                .child(this.email)
+                .child(this.senha)
                 .child(this.logradouro)
                 .child(this.numero)
                 .child(this.complemento)
@@ -37,6 +75,7 @@ public class Usuario {
                 .child(this.cidade)
                 .child(this.estado)
                 .child(this.telefone)
+                .child(this.foto)
                 .setValue(this);
 
     }
@@ -143,5 +182,13 @@ public class Usuario {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

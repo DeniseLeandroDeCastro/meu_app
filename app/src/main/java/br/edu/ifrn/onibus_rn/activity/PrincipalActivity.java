@@ -106,6 +106,7 @@ public class PrincipalActivity extends AppCompatActivity {
         //A partir de uma intent escolhe os apps que podem atender àquela intent
         startActivity(Intent.createChooser(intent, "Compartilhar"));
     }
+
     //Método para acessar a página termo de uso
     public void paginaTermoDeUso(View view) {
         startActivity(new Intent(this, TermoDeUsoActivity.class));

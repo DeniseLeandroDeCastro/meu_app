@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "774873974593",
+    "firebase_url": "https://onibus-rn-default-rtdb.firebaseio.com",
     "project_id": "onibus-rn",
     "storage_bucket": "onibus-rn.appspot.com"
   },

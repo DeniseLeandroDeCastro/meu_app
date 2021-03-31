@@ -29,12 +29,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="enviarEmail"
-            android:src="@drawable/ic_email_branco"
             app:fab_colorNormal="#01C7D2"
             app:menu_colorPressed="#01C7D2"
+            fab:menu_icon="@drawable/ic_email_branco"
             fab:fab_label="Email"
             fab:fab_size="mini" />
-
     </com.github.clans.fab.FloatingActionMenu>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

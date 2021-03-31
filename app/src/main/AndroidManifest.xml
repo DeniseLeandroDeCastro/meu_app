@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.edu.ifrn.onibus_rn">
 
+    <!--Definindo recursos para que o dispositivo funcione corretamente-->
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true"/>
+
+    <!--Definindo permissões-->
+    <!--Para visualizar a galeria de fotos-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/onibus_amarelo"

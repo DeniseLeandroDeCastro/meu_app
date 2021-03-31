@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import br.edu.ifrn.onibus_rn.R;
 import br.edu.ifrn.onibus_rn.config.ConfiguracaoFirebase;
 import br.edu.ifrn.onibus_rn.helper.Base64Custom;
+import br.edu.ifrn.onibus_rn.helper.UsuarioFirebase;
 import br.edu.ifrn.onibus_rn.model.Usuario;
 
 public class CadastroActivity extends AppCompatActivity {
@@ -191,13 +192,20 @@ public class CadastroActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) { //Verifica se o cadastro deu certo
-
-                    //Para salvar os dados do usuário
-                    String idUsuario = Base64Custom.codificarBase64(usuario.getEmail());
-                    usuario.setIdUsuario(idUsuario);
-                    usuario.salvar();
+                    Toast.makeText(CadastroActivity.this,
+                            "Sucesso ao cadastrar usuário!",
+                            Toast.LENGTH_SHORT).show();
+                    UsuarioFirebase.atualizarNomeUsuario(usuario.getNome());
                     finish();
 
+                    //Para salvar os dados do usuário
+                    try {
+                        String idUsuario = Base64Custom.codificarBase64(usuario.getEmail());
+                        usuario.setIdUsuario(idUsuario);
+                        usuario.salvar();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     String excecao = "";
                     try {
