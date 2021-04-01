@@ -33,9 +33,6 @@ public class ContatosFragment extends Fragment {
     private DatabaseReference usuariosRef;
     private ValueEventListener valueEventListenerContatos;
 
-    public ContatosFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

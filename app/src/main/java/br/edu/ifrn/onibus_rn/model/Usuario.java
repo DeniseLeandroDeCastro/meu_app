@@ -64,20 +64,7 @@ public class Usuario {
         DatabaseReference firebase = ConfiguracaoFirebase.getFirebaseDatabase();
         firebase.child("usuarios")
                 .child(this.idUsuario)
-                .child(this.nome)
-                .child(this.email)
-                .child(this.senha)
-                .child(this.logradouro)
-                .child(this.numero)
-                .child(this.complemento)
-                .child(this.bairro)
-                .child(this.cep)
-                .child(this.cidade)
-                .child(this.estado)
-                .child(this.telefone)
-                .child(this.foto)
                 .setValue(this);
-
     }
 
     public String getIdUsuario() {
