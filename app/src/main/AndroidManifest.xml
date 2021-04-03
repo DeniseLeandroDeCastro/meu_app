@@ -32,7 +32,8 @@
         <activity
             android:name=".activity.PrincipalActivity"
             android:label="@string/title_activity_principal"
-            android:theme="@style/Theme.Onibus_rn.NoActionBar" />
+            android:theme="@style/Theme.Onibus_rn"
+            android:parentActivityName=".activity.MainActivity"/>
         <activity
             android:name=".activity.TermoDeUsoActivity"
             android:theme="@style/termoTheme" />

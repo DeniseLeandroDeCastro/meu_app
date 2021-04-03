@@ -2,13 +2,14 @@ package br.edu.ifrn.onibus_rn.model;
 
 import com.google.firebase.database.DatabaseReference;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 import br.edu.ifrn.onibus_rn.config.ConfiguracaoFirebase;
 import br.edu.ifrn.onibus_rn.helper.UsuarioFirebase;
 
-public class Usuario {
+public class Usuario implements Serializable {
 
     private String idUsuario;
     private String nome;

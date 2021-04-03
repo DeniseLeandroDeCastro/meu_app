@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -35,7 +36,8 @@ public class PrincipalActivity extends AppCompatActivity {
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_principal, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_principal, menu);
         return super.onCreateOptionsMenu(menu);
     }
     /**
@@ -83,7 +85,9 @@ public class PrincipalActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(
                         getApplicationContext(),
-                        "Você clicou em Agora Não. Caso seja necessário, você poderá acionar este serviço a qualquer momento.",
+                        "Você clicou em Agora Não. " +
+                                "Caso seja necessário, " +
+                                "você poderá acionar este serviço a qualquer momento.",
                         Toast.LENGTH_LONG
                 ).show();
             }
@@ -110,5 +114,27 @@ public class PrincipalActivity extends AppCompatActivity {
     //Método para acessar a página termo de uso
     public void paginaTermoDeUso(View view) {
         startActivity(new Intent(this, TermoDeUsoActivity.class));
+    }
+
+    //Recuperar os itens selecionados
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuSair:
+                deslogarUsuario();
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //Método do item de menu sair
+    public void deslogarUsuario() {
+        try {
+            autenticacao.signOut();
+            startActivity(new Intent(this, LoginActivity.class));
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 }
