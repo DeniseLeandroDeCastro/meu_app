@@ -1,10 +1,13 @@
 package br.edu.ifrn.onibus_rn.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,8 +20,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import br.edu.ifrn.onibus_rn.R;
+import br.edu.ifrn.onibus_rn.activity.ChatSalaActivity;
 import br.edu.ifrn.onibus_rn.adapter.ContatosAdapter;
 import br.edu.ifrn.onibus_rn.config.ConfiguracaoFirebase;
+import br.edu.ifrn.onibus_rn.helper.RecyclerItemClickListener;
 import br.edu.ifrn.onibus_rn.model.Usuario;
 
 /**
@@ -33,9 +38,6 @@ public class ContatosFragment extends Fragment {
     private DatabaseReference usuariosRef;
     private ValueEventListener valueEventListenerContatos;
 
-    public ContatosFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +57,30 @@ public class ContatosFragment extends Fragment {
         recyclerViewListaContatos.setLayoutManager(layoutManager);
         recyclerViewListaContatos.setHasFixedSize(true);
         recyclerViewListaContatos.setAdapter(adapter);
+        //Configura evento de clique no recyclerview
+        recyclerViewListaContatos.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getActivity(),
+                        recyclerViewListaContatos,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Intent i = new Intent(getActivity(), ChatSalaActivity.class);
+                                startActivity(i);
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+                )
+        );
         return view;
     }
 
@@ -71,10 +97,12 @@ public class ContatosFragment extends Fragment {
     }
 
     public void recuperarContatos() {
+
         valueEventListenerContatos = usuariosRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot dados: dataSnapshot.getChildren()) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dados: snapshot.getChildren()) {
                     Usuario usuario = dados.getValue(Usuario.class);
                     listaContatos.add(usuario);
                 }
@@ -82,7 +110,7 @@ public class ContatosFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });

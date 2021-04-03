@@ -1,7 +1,6 @@
 package br.edu.ifrn.onibus_rn.model;
 
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +12,6 @@ public class Usuario {
 
     private String idUsuario;
     private String nome;
-    private String sobrenome;
     private String email;
     private String senha;
     private String logradouro;
@@ -26,9 +24,7 @@ public class Usuario {
     private String telefone;
     private String foto;
 
-
-    public Usuario() {
-    }
+    public Usuario() { }
 
     public void atualizar() {
         String identificadorUsuario = UsuarioFirebase.getIdentificadorUsuario();
@@ -54,37 +50,23 @@ public class Usuario {
         usuarioMap.put("estado", getEstado());
         usuarioMap.put("telefone", getTelefone());
         usuarioMap.put("foto", getFoto());
-
-
         return usuarioMap;
     }
 
     /*Método para salvar o usuário no Firebase*/
     public void salvar() {
-        DatabaseReference firebase = ConfiguracaoFirebase.getFirebaseDatabase();
-        firebase.child("usuarios")
-                .child(this.idUsuario)
-                .child(this.nome)
-                .child(this.email)
-                .child(this.senha)
-                .child(this.logradouro)
-                .child(this.numero)
-                .child(this.complemento)
-                .child(this.bairro)
-                .child(this.cep)
-                .child(this.cidade)
-                .child(this.estado)
-                .child(this.telefone)
-                .child(this.foto)
-                .setValue(this);
-
+        DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebaseDatabase();
+        DatabaseReference usuario = firebaseRef
+                .child("usuarios")
+                .child(getIdUsuario());
+        usuario.setValue(this);
     }
 
     public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setId(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -94,14 +76,6 @@ public class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
     }
 
     public String getEmail() {

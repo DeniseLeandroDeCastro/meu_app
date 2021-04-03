@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.edu.ifrn.onibus_rn">
-
-    <!--Definindo recursos para que o dispositivo funcione corretamente-->
+    <!-- Definindo recursos para que o dispositivo funcione corretamente -->
     <uses-feature
         android:name="android.hardware.camera2"
-        android:required="true"/>
-
-    <!--Definindo permissões-->
-    <!--Para visualizar a galeria de fotos-->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+        android:required="true" /> <!-- Definindo permissões -->
+    <!-- Para visualizar a galeria de fotos -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -20,26 +17,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Onibus_rn">
         <activity
-            android:name=".activity.ConfiguracoesActivity"
+            android:name=".activity.ChatSalaActivity"
+            android:label="@string/title_activity_chat_sala"
             android:theme="@style/Theme.Onibus_rn.NoActionBar"
             android:parentActivityName=".activity.MainActivity"></activity>
         <activity
+            android:name=".activity.ConfiguracoesActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/Theme.Onibus_rn.NoActionBar" />
+        <activity
             android:name=".activity.ChatActivity"
-            android:theme="@style/Theme.Onibus_rn.NoActionBar"
-            android:parentActivityName=".activity.MainActivity"></activity>
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/Theme.Onibus_rn.NoActionBar" />
         <activity
             android:name=".activity.PrincipalActivity"
             android:label="@string/title_activity_principal"
-            android:theme="@style/Theme.Onibus_rn.NoActionBar"/>
+            android:theme="@style/Theme.Onibus_rn.NoActionBar" />
         <activity
             android:name=".activity.TermoDeUsoActivity"
-            android:theme="@style/termoTheme"/>
+            android:theme="@style/termoTheme" />
         <activity
             android:name=".activity.CadastroActivity"
-            android:parentActivityName=".activity.MainActivity"/>
+            android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.LoginActivity"
-            android:parentActivityName=".activity.MainActivity"/>
+            android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/Theme.Onibus_rn.NoActionBar">

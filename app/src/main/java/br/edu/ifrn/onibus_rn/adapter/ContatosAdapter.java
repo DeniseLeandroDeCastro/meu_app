@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -36,14 +35,15 @@ public class ContatosAdapter extends RecyclerView.Adapter<ContatosAdapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Usuario usuario = contatos.get(position);
 
+        Usuario usuario = contatos.get(position);
         holder.nome.setText(usuario.getNome());
         holder.email.setText(usuario.getEmail());
 
         if(usuario.getFoto() != null) {
             Uri uri = Uri.parse(usuario.getFoto());
-            Glide.with(context).load(uri).into(holder.foto);
+            Glide.with(context).load(uri)
+                    .into(holder.foto);
         } else {
             holder.foto.setImageResource(R.drawable.padrao);
         }
@@ -62,9 +62,9 @@ public class ContatosAdapter extends RecyclerView.Adapter<ContatosAdapter.MyView
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            foto = itemView.findViewById(R.id.imageViewFotoContato);
-            nome = itemView.findViewById(R.id.textNomeContato);
-            email = itemView.findViewById(R.id.textEmailContato);
+            foto    = itemView.findViewById(R.id.imageViewFotoContato);
+            nome    = itemView.findViewById(R.id.textNomeContato);
+            email   = itemView.findViewById(R.id.textEmailContato);
         }
     }
 }
