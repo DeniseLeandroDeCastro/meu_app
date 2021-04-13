@@ -2,21 +2,23 @@ package br.edu.ifrn.onibus_rn.activity;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.DatabaseReference;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +32,16 @@ import br.edu.ifrn.onibus_rn.model.Mensagem;
 import br.edu.ifrn.onibus_rn.model.Usuario;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+
 public class ChatSalaActivity extends AppCompatActivity {
 
     private TextView textViewNome;
     private CircleImageView circleImageViewFoto;
     private EditText editMensagem;
     private Usuario usuarioDestinatario;
+    private DatabaseReference database;
+    private DatabaseReference mensagensRef;
+    private ChildEventListener childEventListenerMensagens;
 
     //Identificador de usuários remetente e destinatário
     private String idUsuarioRemetente;
@@ -70,9 +76,9 @@ public class ChatSalaActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if(bundle != null) {
 
-            //Usuário para onde será enviada a mensagem
             usuarioDestinatario = (Usuario) bundle.getSerializable("chatContato");
-            textViewNome.setText(usuarioDestinatario.getNome());
+            textViewNome.setText( usuarioDestinatario.getNome() );
+
             //Configurar a imagem
             String foto = usuarioDestinatario.getFoto();
             if(foto != null) {
@@ -96,6 +102,10 @@ public class ChatSalaActivity extends AppCompatActivity {
         recyclerMensagens.setHasFixedSize(true);
         recyclerMensagens.setAdapter(adapter);
 
+        database = ConfiguracaoFirebase.getFirebaseDatabase();
+        mensagensRef = database.child("mensagens")
+                .child(idUsuarioRemetente)
+                .child(idUsuarioDestinatario);
     }
     //Enviar mensagem na sala de chat
     public void enviarMensagem(View view) {
@@ -113,6 +123,8 @@ public class ChatSalaActivity extends AppCompatActivity {
             //Salvar a mensagem para o remetente
             salvarMensagem(idUsuarioRemetente, idUsuarioDestinatario, mensagem);
 
+            //Salvar a mensagem para o destinatário
+            salvarMensagem(idUsuarioDestinatario, idUsuarioRemetente, mensagem);
 
         } else {
             Toast.makeText(ChatSalaActivity.this,
@@ -123,15 +135,56 @@ public class ChatSalaActivity extends AppCompatActivity {
 
     private void salvarMensagem(String idRemetente, String idDestinatario, Mensagem msg) {
         DatabaseReference database = ConfiguracaoFirebase.getFirebaseDatabase();
-        DatabaseReference mensagemRef = database.child("mensagens");
-
-        mensagemRef
-                .child(idRemetente)
+        DatabaseReference mensagensRef = database.child("mensagens");
+        mensagensRef.child(idRemetente)
                 .child(idDestinatario)
                 .push()
                 .setValue(msg);
 
         //Limpar texto
         editMensagem.setText("");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recuperarMensagens();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mensagensRef.removeEventListener(childEventListenerMensagens);
+    }
+
+    private void recuperarMensagens() {
+        childEventListenerMensagens = mensagensRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Mensagem mensagem = snapshot.getValue(Mensagem.class);
+                mensagens.add(mensagem);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

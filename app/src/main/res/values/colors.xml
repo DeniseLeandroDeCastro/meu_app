@@ -13,4 +13,7 @@
     <color name="colorPrimaryTermo">#4682B4</color>
     <color name="colorPrimaryDarkTermo">@color/about_facebook_color</color>
     <color name="colorAccentTermo">#01C7D2</color>
+
+    <!--Cores sala de chat-->
+    <color name="balaoRemetente">#dbf9c4</color>
 </resources>

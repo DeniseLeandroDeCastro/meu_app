@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +25,7 @@ import br.edu.ifrn.onibus_rn.activity.ChatSalaActivity;
 import br.edu.ifrn.onibus_rn.adapter.ContatosAdapter;
 import br.edu.ifrn.onibus_rn.config.ConfiguracaoFirebase;
 import br.edu.ifrn.onibus_rn.helper.RecyclerItemClickListener;
+import br.edu.ifrn.onibus_rn.helper.UsuarioFirebase;
 import br.edu.ifrn.onibus_rn.model.Usuario;
 
 /**
@@ -35,9 +37,13 @@ public class ContatosFragment extends Fragment {
     private RecyclerView recyclerViewListaContatos;
     private ContatosAdapter adapter;
     private ArrayList<Usuario> listaContatos = new ArrayList<>();
-    private DatabaseReference usuariosRef;
+    private DatabaseReference usuariosRef; //São os contatos que estão sendo listados de usuários
     private ValueEventListener valueEventListenerContatos;
+    private FirebaseUser usuarioAtual;
 
+    public ContatosFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,7 +53,8 @@ public class ContatosFragment extends Fragment {
 
         //Configurações iniciais
         recyclerViewListaContatos = view.findViewById(R.id.recyclerViewListaContatos);
-        usuariosRef = ConfiguracaoFirebase.getFirebaseDatabase().child("usuarios");
+        usuariosRef = ConfiguracaoFirebase.getFirebaseDatabase().child("usuarios"); //Cria a referência de usuários
+        usuarioAtual = UsuarioFirebase.getUsuarioAtual();
 
         //configurar adapter
         adapter = new ContatosAdapter(listaContatos, getActivity());
@@ -57,6 +64,7 @@ public class ContatosFragment extends Fragment {
         recyclerViewListaContatos.setLayoutManager(layoutManager);
         recyclerViewListaContatos.setHasFixedSize(true);
         recyclerViewListaContatos.setAdapter(adapter);
+
         //Configura evento de clique no recyclerview
         recyclerViewListaContatos.addOnItemTouchListener(
                 new RecyclerItemClickListener(
@@ -86,13 +94,20 @@ public class ContatosFragment extends Fragment {
         );
         return view;
     }
-
+    /**
+     * Quando o fragment for carregado,
+     * os contatos serão recuperados
+     */
     @Override
     public void onStart() {
         super.onStart();
         recuperarContatos();
     }
-
+    /**
+     * Quando o fragment não tiver sendo utilizado
+     * o listener será removido para não ficar
+     * executando de forma indefinida
+     */
     @Override
     public void onStop() {
         super.onStop();
@@ -100,12 +115,10 @@ public class ContatosFragment extends Fragment {
     }
 
     public void recuperarContatos() {
-
         valueEventListenerContatos = usuariosRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for(DataSnapshot dados: snapshot.getChildren()) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot dados: dataSnapshot.getChildren()) {
                     Usuario usuario = dados.getValue(Usuario.class);
                     listaContatos.add(usuario);
                 }
@@ -113,7 +126,7 @@ public class ContatosFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(DatabaseError error) {
 
             }
         });

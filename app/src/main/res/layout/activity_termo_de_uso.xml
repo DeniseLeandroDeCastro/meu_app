@@ -8,7 +8,7 @@
     tools:context=".activity.TermoDeUsoActivity">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textMensagemTexto"
         android:layout_width="313dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -54,6 +54,6 @@
         android:textColor="@color/colorPrimaryDarkTermo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textMensagemTexto" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

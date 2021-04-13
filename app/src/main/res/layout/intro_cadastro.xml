@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textMensagemTexto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Crie sua conta"
@@ -31,7 +31,7 @@
         app:backgroundTint="#01C7D2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textMensagemTexto" />
 
     <TextView
         android:id="@+id/btEntrar"

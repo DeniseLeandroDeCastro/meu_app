@@ -65,14 +65,14 @@
         android:id="@+id/editLogradouro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="4dp"
         android:layout_marginRight="10dp"
         android:drawableLeft="@drawable/ic_home_cinza"
         android:drawablePadding="5dp"
         android:ems="10"
-        android:hint="Rua / Avenida"
-        android:inputType="textPersonName"/>
+        android:hint="Endereço (rua, av.)"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editNumero"
@@ -104,14 +104,14 @@
         android:id="@+id/editTelefone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="4dp"
         android:layout_marginRight="10dp"
         android:drawableLeft="@drawable/ic_celular_cinza"
         android:drawablePadding="5dp"
         android:ems="10"
-        android:hint="(84) 9 9999 9999"
-        android:inputType="phone"/>
+        android:hint="Telefone: (84) 9 9999 9999"
+        android:inputType="phone" />
 
         <EditText
             android:id="@+id/editBairro"
@@ -135,7 +135,7 @@
         android:drawableLeft="@drawable/ic_home_cinza"
         android:drawablePadding="5dp"
         android:ems="10"
-        android:hint="59000-000"
+        android:hint="CEP: 59000-000"
         android:inputType="number" />
 
         <EditText

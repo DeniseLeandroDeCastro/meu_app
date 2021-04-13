@@ -57,4 +57,15 @@
         android:onClick="abrirDialog"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/onibus_amarelo" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
+        android:gravity="center"
+        android:text="Clique na imgem do ônibus\n para enviar o chamado\nà central de atendimento."
+        android:textSize="18sp" />
 </LinearLayout>

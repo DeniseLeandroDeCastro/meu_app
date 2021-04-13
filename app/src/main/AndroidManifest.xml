@@ -16,33 +16,40 @@
         android:roundIcon="@drawable/onibus_amarelo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Onibus_rn">
+
         <activity
             android:name=".activity.ChatSalaActivity"
             android:label="@string/title_activity_chat_sala"
             android:theme="@style/Theme.Onibus_rn.NoActionBar"
-            android:parentActivityName=".activity.MainActivity"></activity>
+            android:parentActivityName=".activity.MainActivity"/>
+
         <activity
             android:name=".activity.ConfiguracoesActivity"
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/Theme.Onibus_rn.NoActionBar" />
+
         <activity
             android:name=".activity.ChatActivity"
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/Theme.Onibus_rn.NoActionBar" />
+
         <activity
             android:name=".activity.PrincipalActivity"
             android:label="@string/title_activity_principal"
-            android:theme="@style/Theme.Onibus_rn"
-            android:parentActivityName=".activity.MainActivity"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
         <activity
             android:name=".activity.TermoDeUsoActivity"
             android:theme="@style/termoTheme" />
+
         <activity
             android:name=".activity.CadastroActivity"
             android:parentActivityName=".activity.MainActivity" />
+
         <activity
             android:name=".activity.LoginActivity"
             android:parentActivityName=".activity.MainActivity" />
+
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/Theme.Onibus_rn.NoActionBar">

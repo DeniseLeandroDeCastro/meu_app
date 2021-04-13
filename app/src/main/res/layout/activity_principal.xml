@@ -8,8 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".activity.PrincipalActivity">
 
-    <include layout="@layout/toolbar"/>
-
     <!--FloatingActionMenu -> Menu flutuante em forma de botão-->
     <include layout="@layout/content_principal" />
 

@@ -169,6 +169,9 @@ public class CadastroActivity extends AppCompatActivity {
                     Toast.makeText(CadastroActivity.this,
                             "Preencha o nome!",
                             Toast.LENGTH_SHORT).show();
+
+                    //Limpar texto
+                    botaoCadastrar.setText("");
                 }
             }
         });

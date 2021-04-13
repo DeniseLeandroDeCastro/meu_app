@@ -57,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
                         usuario.setEmail(textoEmail);
                         usuario.setSenha(textoSenha);
                         validarLogin();
+
+                        //Limpar texto
+                        botaoEntrar.setText("");
                     } else {
                         Toast.makeText(LoginActivity.this,
                                 "Preencha a senha!",
@@ -114,6 +117,6 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void abrirTelaPrincipal() {
         startActivity(new Intent(this, PrincipalActivity.class));
-        finish();
+
     }
 }
