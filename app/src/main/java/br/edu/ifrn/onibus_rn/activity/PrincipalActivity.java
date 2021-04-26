@@ -70,6 +70,9 @@ public class PrincipalActivity extends AppCompatActivity {
                                 " enviando o chamado agora. ",
                         Toast.LENGTH_LONG
                 ).show();
+
+                Intent intent = new Intent(PrincipalActivity.this, MapsActivity.class);
+                startActivity(intent);
             }
         });
         dialog.setNegativeButton("AGORA NÃO", new DialogInterface.OnClickListener() {

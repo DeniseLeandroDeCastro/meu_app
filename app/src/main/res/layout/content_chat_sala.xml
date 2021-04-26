@@ -68,6 +68,7 @@
             android:inputType="text" />
 
         <ImageView
+            android:id="@+id/imageCamera"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginRight="16dp"
